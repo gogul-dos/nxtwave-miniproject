@@ -1,0 +1,24 @@
+.not-found-image {
+  height: 300px;
+  width: auto;
+}
+.not-found-button {
+  background-color: #4094ef;
+  color: #ffffff;
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+  border-width: 0;
+}
+.not-found-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+}
+@media (max-width: 768px) {
+  .not-found-image {
+    height: 150px;
+    width: auto;
+  }
+}

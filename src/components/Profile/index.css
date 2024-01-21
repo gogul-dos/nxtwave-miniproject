@@ -1,0 +1,101 @@
+.my-profile-image {
+  height: 150px;
+  width: auto;
+}
+.my-profile-dark-theme {
+  background-color: #000000;
+  color: #ffffff;
+}
+.my-profile-light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+.my-profile-main-container {
+  padding: 30px;
+  margin-top: -30px;
+}
+.user-profile-landscape {
+  display: flex;
+  align-items: center;
+}
+.user-profile-portrait {
+  display: none;
+}
+.my-profile-story-image {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+.unordered-my-story-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+.my-profile-story-list-item {
+  margin-right: 40px;
+}
+.horizontal-line {
+  margin-left: -30px;
+  margin-right: -30px;
+}
+.no-post-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.unordered-my-post-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.my-post-list-item {
+  margin: 0;
+  padding: 0;
+}
+.my-post-image {
+  width: 400px;
+  padding: 0;
+  margin: 0;
+  height: auto;
+}
+@media (max-width: 768px) {
+  .my-profile-main-container {
+    padding: 10px;
+    margin-top: -10px;
+  }
+  .my-profile-image {
+    height: 75px;
+    width: auto;
+  }
+  .user-profile-landscape {
+    display: none;
+  }
+  .user-profile-portrait {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+  }
+  .my-profile-story-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  .horizontal-line {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .unordered-my-post-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .my-post-image {
+    width: 150px;
+    height: auto;
+  }
+}

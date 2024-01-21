@@ -1,0 +1,140 @@
+.main-home-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: -30px;
+}
+.home-dark-container {
+  background-color: #000000;
+  color: #ebebeb;
+}
+.home-light-container {
+  background-color: #ffffff;
+  color: #000000;
+}
+.loader-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-failure-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.try-again-button {
+  background-color: #4094ef;
+  border-width: 0;
+  padding: 15px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+.loader-container-story {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-story-failure-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.user-story-image {
+  height: 60px;
+  width: 60px;
+  align-self: center;
+  border-radius: 50%;
+}
+.story-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.slider-container-landscape {
+  padding: 25px;
+  width: 70%;
+  align-self: center;
+}
+.slider-container-portrait {
+  display: none;
+}
+.dark-color {
+  color: #ffffff;
+}
+.light-color {
+  color: #000000;
+}
+@media (max-width: 768px) {
+  .slider-container-portrait {
+    display: block;
+    padding: 25px;
+    width: 100%;
+    align-self: center;
+  }
+  .main-home-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: -10px;
+  }
+  .slider-container-landscape {
+    display: none;
+  }
+}
+.user-name-container {
+  display: flex;
+  align-items: center;
+}
+.user-profile-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.post-unordered-list {
+  list-style: none;
+  padding: 0;
+}
+.username-link {
+  text-decoration: none;
+  font-size: larger;
+}
+.post-dark-background {
+  background-color: #000000;
+  box-shadow: inset;
+}
+.post-light-background {
+  background-color: #ffffff;
+}
+.post-list-item {
+  margin: 35px;
+  padding: 20px;
+}
+.post-image {
+  width: 100%;
+  height: auto;
+  margin-top: 15px;
+}
+.likes-comment-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.unordered-comment-list {
+  list-style: none;
+  padding: 0;
+}
+.comment-list-item {
+  display: flex;
+  align-items: center;
+}
+.like-button {
+  border-width: 0;
+  outline: none;
+  background-color: transparent;
+}
