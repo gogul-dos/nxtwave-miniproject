@@ -119,7 +119,7 @@ class Home extends Component {
           <div className={`home-story-failure-container ${fontColor}`}>
             <img
               src="https://res.cloudinary.com/djfbwkdh3/image/upload/v1705664465/alert-triangle_e49eqv.png"
-              alt="failure"
+              alt="failure view"
               className="failure-image"
             />
             <h1>Something went wrong. Please try again</h1>
@@ -224,7 +224,7 @@ class Home extends Component {
     switch (urlRequestStatus) {
       case this.requestStatus.progress:
         return (
-          <div className="loader-container" data-testid="loader">
+          <div className="loader-container" testid="loader">
             <Loader type="TailSpin" color="#4094ef" />
           </div>
         )

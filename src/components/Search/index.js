@@ -133,7 +133,7 @@ class Search extends Component {
   }
 
   getCorrespondingLandscapeView = (activeTheme, changeCurrentTab) => {
-    const {urlRequestStatus, urlResult} = this.state
+    const {urlRequestStatus, urlResult, searchInput} = this.state
     const fontColor = activeTheme === 'Dark' ? 'dark-color' : 'light-color'
     const iconColor = activeTheme === 'Dark' ? '#ffffff' : '#000000'
     const shadowColor = activeTheme === 'Dark' ? '#333' : '#888888'
@@ -142,7 +142,7 @@ class Search extends Component {
     switch (urlRequestStatus) {
       case this.requestStatus.progress:
         return (
-          <div className="loader-container" data-testid="loader">
+          <div className="loader-container" testid="loader">
             <Loader type="TailSpin" color="#4094ef" />
           </div>
         )
@@ -157,7 +157,9 @@ class Search extends Component {
             <p>Something went wrong. Please try again</p>
             <button
               type="button"
-              onClick={this.getSearchResults}
+              onClick={() => {
+                this.getSearchResults(searchInput)
+              }}
               className="try-again-button"
             >
               Try again
@@ -200,7 +202,7 @@ class Search extends Component {
                         <button
                           type="button"
                           label="likeIcon"
-                          data-testid="likeIcon"
+                          testid="likeIcon"
                           className="like-button"
                           onClick={() => this.postLiked(eachPost.postId)}
                         >
@@ -217,7 +219,7 @@ class Search extends Component {
                         <button
                           type="button"
                           label="unLikeIconv"
-                          data-testid="unLikeIcon"
+                          testid="unLikeIcon"
                           className="like-button"
                           onClick={() => this.postUnLiked(eachPost.postId)}
                         >
