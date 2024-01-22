@@ -26,7 +26,6 @@ class Search extends Component {
   componentDidMount() {
     const {searchInput} = this.context
     console.log(searchInput)
-    console.log('Hii')
     this.getSearchResults(searchInput)
   }
 
@@ -152,18 +151,23 @@ class Search extends Component {
           <div className="home-failure-container">
             <img
               src="https://res.cloudinary.com/djfbwkdh3/image/upload/v1705664465/alert-triangle_e49eqv.png"
-              alt="failure"
+              alt="failure view"
               className="failure-image"
             />
-            <h1>Something went wrong. Please try again</h1>
-            <button type="button" className="try-again-button">
-              Try Again
+            <p>Something went wrong. Please try again</p>
+            <button
+              type="button"
+              onClick={this.getSearchResults}
+              className="try-again-button"
+            >
+              Try again
             </button>
           </div>
         )
       case this.requestStatus.success:
         return (
           <div>
+            <h1 className="search-results-text">Search Results</h1>
             {urlResult.length !== 0 ? (
               <ul className="post-unordered-list">
                 {urlResult.map(eachPost => (
@@ -192,39 +196,47 @@ class Search extends Component {
                       className="post-image"
                     />
                     <div className="likes-comment-container">
-                      {!eachPost.like_status && (
+                      {!eachPost.like_status ? (
                         <button
                           type="button"
                           label="likeIcon"
                           data-testid="likeIcon"
                           className="like-button"
+                          onClick={() => this.postLiked(eachPost.postId)}
                         >
                           <BsHeart
                             color={`${iconColor}`}
-                            style={{marginRight: '10px'}}
-                            onClick={() => this.postLiked(eachPost.postId)}
+                            style={{
+                              marginRight: '10px',
+                              height: '20px',
+                              width: '20px',
+                            }}
                           />
                         </button>
-                      )}
-                      {eachPost.like_status && (
+                      ) : (
                         <button
                           type="button"
-                          label="likeIcon"
-                          data-testid="likeIcon"
+                          label="unLikeIconv"
+                          data-testid="unLikeIcon"
                           className="like-button"
+                          onClick={() => this.postUnLiked(eachPost.postId)}
                         >
                           <FcLike
-                            style={{marginRight: '10px'}}
-                            onClick={() => this.postUnLiked(eachPost.postId)}
+                            style={{
+                              marginRight: '10px',
+                              height: '20px',
+                              width: '20px',
+                            }}
                           />
                         </button>
                       )}
                       <FaRegComment style={{marginRight: '10px'}} />
                       <BiShareAlt style={{marginRight: '10px'}} />
                     </div>
-                    <p style={{fontWeight: 'bold'}}>
-                      {eachPost.likesCount} likes
-                    </p>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                      <p style={{fontWeight: 'bold'}}>{eachPost.likesCount}</p>
+                      <p>likes</p>
+                    </div>
                     <p>{eachPost.postDetails.caption}</p>
                     <ul className="unordered-comment-list">
                       {eachPost.comments.map(eachComment => (
@@ -271,7 +283,6 @@ class Search extends Component {
           return (
             <>
               <div className="search-container-landscape">
-                <h1 className="search-results-text">Search Results</h1>
                 {this.getCorrespondingLandscapeView(activeTheme)}
               </div>
               <div className="search-container-portrait">

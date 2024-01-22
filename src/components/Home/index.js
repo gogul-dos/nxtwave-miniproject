@@ -136,20 +136,20 @@ class Home extends Component {
         )
       case this.requestStatus.success:
         return (
-          <div className={`slider-container-landscape ${fontColor}`}>
+          <ul className={`slider-container-landscape ${fontColor}`}>
             <Slider {...settings}>
               {storyResult.map(eachStory => (
-                <div key={eachStory.userId} className="story-container">
+                <li key={eachStory.userId} className="story-container">
                   <img
                     src={eachStory.storyUrl}
                     alt="user story"
                     className="user-story-image"
                   />
                   <p>{eachStory.userName}</p>
-                </div>
+                </li>
               ))}
             </Slider>
-          </div>
+          </ul>
         )
       default:
         return null
@@ -284,6 +284,7 @@ class Home extends Component {
                       label="likeIcon"
                       data-testid="likeIcon"
                       className="like-button"
+                      onClick={() => this.postLiked(eachPost.postId)}
                     >
                       <BsHeart
                         color={`${iconColor}`}
@@ -292,7 +293,6 @@ class Home extends Component {
                           height: '20px',
                           width: '20px',
                         }}
-                        onClick={() => this.postLiked(eachPost.postId)}
                       />
                     </button>
                   ) : (
@@ -301,6 +301,7 @@ class Home extends Component {
                       label="unLikeIconv"
                       data-testid="unLikeIcon"
                       className="like-button"
+                      onClick={() => this.postUnLiked(eachPost.postId)}
                     >
                       <FcLike
                         style={{
@@ -308,7 +309,6 @@ class Home extends Component {
                           height: '20px',
                           width: '20px',
                         }}
-                        onClick={() => this.postUnLiked(eachPost.postId)}
                       />
                     </button>
                   )}

@@ -60,6 +60,8 @@
   padding: 25px;
   width: 70%;
   align-self: center;
+  list-style: none;
+  padding: 0;
 }
 .slider-container-portrait {
   display: none;

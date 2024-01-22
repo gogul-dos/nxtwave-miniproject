@@ -2,6 +2,7 @@ import {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {FaSearch, FaMoon, FaSun} from 'react-icons/fa'
+import {IoIosCloseCircle} from 'react-icons/io'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import ThemeContext from '../Context'
 import './index.css'
@@ -158,7 +159,6 @@ class Header extends Component {
                         type="button"
                         onClick={() => {
                           changeCurrentTab('Search')
-                          this.hamburgerButtonClicked()
                         }}
                         style={{
                           color: currentTab === 'Search' ? '#4094ef' : '',
@@ -175,7 +175,6 @@ class Header extends Component {
                       to="/"
                       onClick={() => {
                         changeCurrentTab('Home')
-                        this.hamburgerButtonClicked()
                       }}
                       style={{
                         color: currentTab === 'Home' ? '#4094ef' : '',
@@ -191,7 +190,6 @@ class Header extends Component {
                       to="/my-profile"
                       onClick={() => {
                         changeCurrentTab('Profile')
-                        this.hamburgerButtonClicked()
                       }}
                       style={{
                         color: currentTab === 'Profile' ? '#4094ef' : '',
@@ -218,7 +216,6 @@ class Header extends Component {
                     <button
                       onClick={() => {
                         themeButtonClicked()
-                        this.hamburgerButtonClicked()
                       }}
                       label="themeButton"
                       type="button"
@@ -236,6 +233,18 @@ class Header extends Component {
                           }}
                         />
                       )}
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={this.hamburgerButtonClicked}
+                      type="button"
+                      label="close-button"
+                      className="close-button"
+                    >
+                      <IoIosCloseCircle
+                        style={{height: '22px', width: 'auto'}}
+                      />
                     </button>
                   </li>
                 </ul>
