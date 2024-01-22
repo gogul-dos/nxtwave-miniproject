@@ -67,7 +67,7 @@ class Profile extends Component {
               alt="failure view"
               className="failure-image"
             />
-            <h1>Something went wrong. Please try again</h1>
+            <p>Something went wrong. Please try again</p>
             <button
               type="button"
               onClick={this.getMyProfileResults}
@@ -94,7 +94,7 @@ class Profile extends Component {
                   flexDirection: 'column',
                 }}
               >
-                <h1>{urlResult.user_id}</h1>
+                <h1>{urlResult.user_name}</h1>
                 <div style={{display: 'flex', alignItems: 'center'}}>
                   <img
                     src={urlResult.profile_pic}
@@ -120,7 +120,7 @@ class Profile extends Component {
                     following
                   </p>
                 </div>
-                <h1>{urlResult.user_name}</h1>
+                <h1>{urlResult.user_id}</h1>
                 <p>{urlResult.user_bio}</p>
               </div>
             </div>
@@ -138,7 +138,7 @@ class Profile extends Component {
             <hr className="horizontal-line" />
             <div style={{display: 'flex', alignItems: 'center'}}>
               <BsGrid3X3 />
-              <p style={{marginLeft: '10px'}}>Posts</p>
+              <h1 style={{marginLeft: '10px'}}>Posts</h1>
             </div>
             {urlResult.posts.length === 0 ? (
               <div className="no-post-container">

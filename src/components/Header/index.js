@@ -126,7 +126,7 @@ class Header extends Component {
                     </li>
                     <li>
                       <Link
-                        to="/profile"
+                        to="/my-profile"
                         style={{
                           color: currentTab === 'Profile' ? '#4094ef' : '',
                           fontWeight: currentTab === 'Profile' ? 'Bold' : '',
@@ -188,7 +188,7 @@ class Header extends Component {
                   </li>
                   <li>
                     <Link
-                      to="/profile"
+                      to="/my-profile"
                       onClick={() => {
                         changeCurrentTab('Profile')
                         this.hamburgerButtonClicked()

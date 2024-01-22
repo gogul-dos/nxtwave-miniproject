@@ -77,7 +77,6 @@ class Home extends Component {
         userId: eachPost.user_id,
         userName: eachPost.user_name,
         createdAt: eachPost.created_at,
-        like_status: false,
       }))
       this.setState({
         urlRequestStatus: this.requestStatus.success,
@@ -266,7 +265,7 @@ class Home extends Component {
                     className="user-profile-image"
                   />
                   <Link
-                    to={`/user-profile/${eachPost.userId}`}
+                    to={`/users/${eachPost.userId}`}
                     className={`username-link ${fontColor}`}
                     onClick={() => changeCurrentTab('userProfile')}
                   >

@@ -61,12 +61,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/Login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/profile" component={Profile} />
-          <ProtectedRoute
-            exact
-            path="/user-profile/:user_id"
-            component={UserProfile}
-          />
+          <ProtectedRoute exact path="/my-profile" component={Profile} />
+          <ProtectedRoute exact path="/users/:id" component={UserProfile} />
           <Route exact path="/not-found" component={NotFound} />
           <Redirect to="/not-found" />
         </Switch>
