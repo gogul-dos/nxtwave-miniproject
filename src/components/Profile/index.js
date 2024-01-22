@@ -15,7 +15,7 @@ class Profile extends Component {
   }
 
   state = {
-    urlRequestStatus: this.requestStatus.progress,
+    urlRequestStatusProfile: this.requestStatus.progress,
     urlResult: {},
   }
 
@@ -24,7 +24,7 @@ class Profile extends Component {
   }
 
   getMyProfileResults = async () => {
-    this.setState({urlRequestStatus: this.requestStatus.progress})
+    this.setState({urlRequestStatusProfile: this.requestStatus.progress})
     const url = `https://apis.ccbp.in/insta-share/my-profile`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -36,20 +36,20 @@ class Profile extends Component {
     if (response.ok === true) {
       this.setState({
         urlResult: data.profile,
-        urlRequestStatus: this.requestStatus.success,
+        urlRequestStatusProfile: this.requestStatus.success,
       })
     } else {
-      this.setState({urlRequestStatus: this.requestStatus.failure})
+      this.setState({urlRequestStatusProfile: this.requestStatus.failure})
     }
   }
 
   getMyProfileView = activeTheme => {
-    const {urlRequestStatus, urlResult} = this.state
+    const {urlRequestStatusProfile, urlResult} = this.state
     const backgroundStyle =
       activeTheme === 'Dark'
         ? 'my-profile-dark-theme'
         : 'my-profile-light-theme'
-    switch (urlRequestStatus) {
+    switch (urlRequestStatusProfile) {
       case this.requestStatus.progress:
         return (
           <div
@@ -120,7 +120,7 @@ class Profile extends Component {
                     following
                   </p>
                 </div>
-                <h1>{urlResult.user_id}</h1>
+                <p>{urlResult.user_id}</p>
                 <p>{urlResult.user_bio}</p>
               </div>
             </div>

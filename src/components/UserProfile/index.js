@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import {BsGrid3X3} from 'react-icons/bs'
+import {BiCamera} from 'react-icons/bi'
 import ThemeContext from '../Context'
 import Header from '../Header'
 import './index.css'
@@ -23,10 +24,11 @@ class UserProfile extends Component {
   }
 
   getUserProfileResults = async () => {
+    this.setState({urlRequestStatus: this.requestStatus.progress})
     const {match} = this.props
     const {params} = match
-    const userId = params.user_id
-    this.setState({urlRequestStatus: this.requestStatus.progress})
+    const userId = params.id
+
     const url = `https://apis.ccbp.in/insta-share/users/${userId}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -67,13 +69,13 @@ class UserProfile extends Component {
           <div className={`home-failure-container ${backgroundStyle}`}>
             <img
               src="https://res.cloudinary.com/djfbwkdh3/image/upload/v1705664465/alert-triangle_e49eqv.png"
-              alt="failure"
+              alt="failure view"
               className="failure-image"
             />
-            <h1>Something went wrong. Please try again</h1>
+            <p>Something went wrong. Please try again</p>
             <button
               type="button"
-              onClick={this.getMyProfileResults}
+              onClick={this.getUserProfileResults}
               className="try-again-button"
             >
               Try Again
@@ -97,7 +99,7 @@ class UserProfile extends Component {
                   flexDirection: 'column',
                 }}
               >
-                <h1>{urlResult.user_id}</h1>
+                <p>{urlResult.user_id}</p>
                 <div style={{display: 'flex', alignItems: 'center'}}>
                   <img
                     src={urlResult.profile_pic}
@@ -141,15 +143,12 @@ class UserProfile extends Component {
             <hr className="horizontal-line" />
             <div style={{display: 'flex', alignItems: 'center'}}>
               <BsGrid3X3 />
-              <p style={{marginLeft: '10px'}}>Posts</p>
+              <h1 style={{marginLeft: '10px'}}>Posts</h1>
             </div>
             {urlResult.posts.length === 0 ? (
               <div className="no-post-container">
-                <img
-                  src="https://res.cloudinary.com/djfbwkdh3/image/upload/v1705726278/Group_7731_ln0xhd.png"
-                  alt="no post"
-                  className="no-posts-image"
-                />
+                <BiCamera className="my-post-image" />
+                <h1>No Posts</h1>
               </div>
             ) : (
               <ul className="unordered-my-post-list">
