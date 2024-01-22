@@ -86,7 +86,7 @@ class Header extends Component {
                     <button
                       type="button"
                       label="search"
-                      data-testid="searchIcon"
+                      testid="searchIcon"
                       className="search-icon-container"
                       onClick={() => {
                         changeCurrentTab('Search')
@@ -250,26 +250,19 @@ class Header extends Component {
                 </ul>
               )}
               <hr />
-              {currentTab === 'Search' && window.innerWidth <= 768 && (
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
+              {currentTab === 'Search' ? (
+                <div className="portrait-search-bar">
                   <input
                     type="search"
                     className="search-element"
                     placeholder="Search Caption"
-                    id="portraitSearch"
                     onChange={this.inputChanged}
                   />
 
                   <button
                     type="button"
                     label="search"
-                    data-testid="searchIcon"
+                    testid="searchIcon"
                     className="search-icon-container"
                     onClick={() => {
                       changeCurrentTab('Search')
@@ -280,6 +273,8 @@ class Header extends Component {
                     <FaSearch style={{height: '15px', width: '15px'}} />
                   </button>
                 </div>
+              ) : (
+                ''
               )}
             </nav>
           )

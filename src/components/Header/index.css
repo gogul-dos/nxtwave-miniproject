@@ -91,6 +91,9 @@
   outline: none;
   border-width: 0;
 }
+.portrait-search-bar {
+  display: none;
+}
 @media (max-width: 768px) {
   .navbar-container-portrait {
     display: flex;
@@ -99,6 +102,12 @@
     align-items: center;
     padding-left: 15px;
     padding-right: 15px;
+  }
+  .portrait-search-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
   .navbar-right-container {
     display: none;

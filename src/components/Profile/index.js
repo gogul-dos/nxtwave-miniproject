@@ -5,6 +5,7 @@ import {BsGrid3X3} from 'react-icons/bs'
 import {BiCamera} from 'react-icons/bi'
 import ThemeContext from '../Context'
 import Header from '../Header'
+import Search from '../Search'
 import './index.css'
 
 class Profile extends Component {
@@ -54,7 +55,7 @@ class Profile extends Component {
         return (
           <div
             className={`loader-container ${backgroundStyle}`}
-            data-testid="loader"
+            testid="loader"
           >
             <Loader type="TailSpin" color="#4094ef" />
           </div>
@@ -173,6 +174,7 @@ class Profile extends Component {
           return (
             <div>
               <Header />
+
               <div>{this.getMyProfileView(activeTheme)}</div>
             </div>
           )

@@ -183,7 +183,7 @@ class Search extends Component {
                         className="user-profile-image"
                       />
                       <Link
-                        to={`/user-profile/${eachPost.userId}`}
+                        to={`/users/${eachPost.userId}`}
                         className={`username-link ${fontColor}`}
                         onClick={() => changeCurrentTab('userProfile')}
                       >
@@ -233,9 +233,15 @@ class Search extends Component {
                       <FaRegComment style={{marginRight: '10px'}} />
                       <BiShareAlt style={{marginRight: '10px'}} />
                     </div>
-                    <div style={{display: 'flex', alignItems: 'center'}}>
-                      <p style={{fontWeight: 'bold'}}>{eachPost.likesCount}</p>
-                      <p>likes</p>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      <p>{eachPost.likesCount}</p>
+                      <p style={{marginLeft: '5px'}}>likes</p>
                     </div>
                     <p>{eachPost.postDetails.caption}</p>
                     <ul className="unordered-comment-list">
@@ -279,11 +285,14 @@ class Search extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {activeTheme, buttonClicked} = value
+          const {activeTheme, buttonClicked, changeCurrentTab} = value
           return (
             <>
               <div className="search-container-landscape">
-                {this.getCorrespondingLandscapeView(activeTheme)}
+                {this.getCorrespondingLandscapeView(
+                  activeTheme,
+                  changeCurrentTab,
+                )}
               </div>
               <div className="search-container-portrait">
                 {buttonClicked === 0 ? (
@@ -292,7 +301,12 @@ class Search extends Component {
                     <p>Search Results will be appear here</p>
                   </div>
                 ) : (
-                  <div>{this.getCorrespondingLandscapeView(activeTheme)}</div>
+                  <div>
+                    {this.getCorrespondingLandscapeView(
+                      activeTheme,
+                      changeCurrentTab,
+                    )}
+                  </div>
                 )}
               </div>
             </>

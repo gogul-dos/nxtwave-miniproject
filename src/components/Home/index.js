@@ -82,8 +82,6 @@ class Home extends Component {
         urlRequestStatus: this.requestStatus.success,
         urlResult: formattedPostData,
       })
-      console.log(formattedPostData)
-      console.log(data)
     } else {
       this.setState({urlRequestStatus: this.requestStatus.failure})
     }
@@ -112,7 +110,7 @@ class Home extends Component {
     switch (storyRequestStatus) {
       case this.requestStatus.progress:
         return (
-          <div className="loader-container-story" data-testid="loader">
+          <div className="loader-container-story" testid="loader">
             <Loader type="TailSpin" color="#4094ef" />
           </div>
         )
@@ -195,7 +193,6 @@ class Home extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    console.log(data)
     if (data.message === 'Post has been disliked') {
       const changedData = urlResult.map(eachPost => {
         if (eachPost.postId === postId) {
@@ -282,7 +279,7 @@ class Home extends Component {
                     <button
                       type="button"
                       label="likeIcon"
-                      data-testid="likeIcon"
+                      testid="likeIcon"
                       className="like-button"
                       onClick={() => this.postLiked(eachPost.postId)}
                     >
@@ -299,7 +296,7 @@ class Home extends Component {
                     <button
                       type="button"
                       label="unLikeIconv"
-                      data-testid="unLikeIcon"
+                      testid="unLikeIcon"
                       className="like-button"
                       onClick={() => this.postUnLiked(eachPost.postId)}
                     >
@@ -319,7 +316,16 @@ class Home extends Component {
                     style={{marginRight: '10px', height: '20px', width: '20px'}}
                   />
                 </div>
-                <p style={{fontWeight: 'bold'}}>{eachPost.likesCount} likes</p>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  <p>{eachPost.likesCount}</p>
+                  <p style={{marginLeft: '5px'}}>likes</p>
+                </div>
                 <p>{eachPost.postDetails.caption}</p>
                 <ul className="unordered-comment-list">
                   {eachPost.comments.map(eachComment => (

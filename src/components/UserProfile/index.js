@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import {BsGrid3X3} from 'react-icons/bs'
 import {BiCamera} from 'react-icons/bi'
 import ThemeContext from '../Context'
+import Search from '../Search'
 import Header from '../Header'
 import './index.css'
 
@@ -59,7 +60,7 @@ class UserProfile extends Component {
         return (
           <div
             className={`loader-container ${backgroundStyle}`}
-            data-testid="loader"
+            testid="loader"
           >
             <Loader type="TailSpin" color="#4094ef" />
           </div>
@@ -174,10 +175,11 @@ class UserProfile extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {activeTheme} = value
+          const {activeTheme, currentTab} = value
           return (
             <div>
               <Header />
+
               <div>{this.getUserProfileView(activeTheme)}</div>
             </div>
           )
