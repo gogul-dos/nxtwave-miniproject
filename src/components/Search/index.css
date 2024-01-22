@@ -17,10 +17,16 @@
 .search-container-portrait {
   display: none;
 }
+.search-results-text {
+  margin-left: 15px;
+}
 @media (max-width: 768px) {
   .no-search-results-image {
     height: 100px;
     width: auto;
+  }
+  .search-results-text {
+    display: none;
   }
   .search-container-landscape {
     display: none;

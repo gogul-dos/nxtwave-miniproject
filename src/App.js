@@ -10,7 +10,12 @@ import ThemeContext from './components/Context'
 import './App.css'
 
 class App extends Component {
-  state = {activeTheme: 'Light', currentTab: 'Home', searchInput: ''}
+  state = {
+    activeTheme: 'Light',
+    currentTab: 'Home',
+    searchInput: '',
+    buttonClicked: 0,
+  }
 
   changeTheme = () => {
     const {activeTheme} = this.state
@@ -25,20 +30,29 @@ class App extends Component {
 
   changeCurrentTab = newTab => {
     this.setState({currentTab: newTab})
+    if (newTab === 'Search') {
+      this.setState({buttonClicked: 0})
+    }
   }
 
   changeSearchInput = searchValue => {
     this.setState({searchInput: searchValue})
   }
 
+  increaseButtonClicked = () => {
+    this.setState({buttonClicked: 1})
+  }
+
   render() {
-    const {activeTheme, currentTab, searchInput} = this.state
+    const {activeTheme, currentTab, searchInput, buttonClicked} = this.state
     return (
       <ThemeContext.Provider
         value={{
           activeTheme,
           currentTab,
           searchInput,
+          buttonClicked,
+          increaseButtonClicked: this.increaseButtonClicked,
           changeTheme: this.changeTheme,
           changeCurrentTab: this.changeCurrentTab,
           changeSearchInput: this.changeSearchInput,

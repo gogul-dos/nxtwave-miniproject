@@ -19,13 +19,13 @@ class Login extends Component {
     this.setState({password: event.target.value})
   }
 
-  showPasswordToggled = event => {
+  /* showPasswordToggled = event => {
     if (event.target.checked) {
       document.getElementById('password').type = 'text'
     } else {
       document.getElementById('password').type = 'password'
     }
-  }
+  } */
 
   loginFormSubmitted = async event => {
     event.preventDefault()
@@ -33,30 +33,22 @@ class Login extends Component {
     const {history} = this.props
     const userDetails = {username, password}
 
-    try {
-      const response = await fetch('https://apis.ccbp.in/login', {
-        method: 'POST',
-        body: JSON.stringify(userDetails),
-      })
+    const response = await fetch('https://apis.ccbp.in/login', {
+      method: 'POST',
+      body: JSON.stringify(userDetails),
+    })
 
-      if (response.ok) {
-        const {
-          jwt_token: jwtToken,
-          error_msg: errorMessage,
-        } = await response.json()
-        Cookies.set('jwt_token', jwtToken, {expires: 15})
-        this.setState({showErrorMessage: false, errorMessage})
-        history.replace('/')
-      } else {
-        const {error_msg: errorMessage} = await response.json()
-        this.setState({showErrorMessage: true, errorMessage})
-      }
-    } catch (error) {
-      console.error('Error during login:', error)
-      this.setState({
-        showErrorMessage: true,
-        errorMessage: 'An error occurred during login.',
-      })
+    if (response.ok) {
+      const {
+        jwt_token: jwtToken,
+        error_msg: errorMessage,
+      } = await response.json()
+      Cookies.set('jwt_token', jwtToken, {expires: 15})
+      this.setState({showErrorMessage: false, errorMessage})
+      history.replace('/')
+    } else {
+      const {error_msg: errorMessage} = await response.json()
+      this.setState({showErrorMessage: true, errorMessage})
     }
   }
 
@@ -124,6 +116,7 @@ class Login extends Component {
                       placeholder="Password"
                       className="input-element"
                     />
+                    {/*
                     <div
                       style={{
                         display: 'flex',
@@ -139,7 +132,7 @@ class Login extends Component {
                       <label htmlFor="showPassword" style={{fontSize: '15px'}}>
                         Show Password
                       </label>
-                    </div>
+                    </div> */}
                     {showErrorMessage && (
                       <p style={{color: 'red'}}>{errorMessage}</p>
                     )}

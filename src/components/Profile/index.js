@@ -96,7 +96,12 @@ class Profile extends Component {
               >
                 <h1>{urlResult.user_id}</h1>
                 <div style={{display: 'flex', alignItems: 'center'}}>
-                  <p>
+                  <img
+                    src={urlResult.profile_pic}
+                    alt="my profile"
+                    className="my-profile-image-portrait"
+                  />
+                  <p style={{marginLeft: '10px'}}>
                     <span style={{fontWeight: 'bold'}}>
                       {urlResult.posts_count}
                     </span>
@@ -117,45 +122,6 @@ class Profile extends Component {
                 </div>
                 <h1>{urlResult.user_name}</h1>
                 <p>{urlResult.user_bio}</p>
-              </div>
-            </div>
-            <div className="user-profile-portrait">
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  flexDirection: 'column',
-                }}
-              >
-                <h1>{urlResult.user_id}</h1>
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                  <img
-                    src={urlResult.profile_pic}
-                    alt="my profile"
-                    className="my-profile-image"
-                  />
-                  <p style={{marginLeft: '15px'}}>
-                    <span style={{fontWeight: 'bold'}}>
-                      {urlResult.posts_count}
-                    </span>
-                    posts
-                  </p>
-                  <p style={{marginLeft: '15px'}}>
-                    <span style={{fontWeight: 'bold'}}>
-                      {urlResult.followers_count}
-                    </span>
-                    followers
-                  </p>
-                  <p style={{marginLeft: '15px'}}>
-                    <span style={{fontWeight: 'bold'}}>
-                      {urlResult.following_count}
-                    </span>
-                    following
-                  </p>
-                </div>
-                <p>{urlResult.user_name}</p>
-                <p>{urlResult.user_bio}</p>
-                <hr />
               </div>
             </div>
             <ul className="unordered-my-story-list">

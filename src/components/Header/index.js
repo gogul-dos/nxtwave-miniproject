@@ -36,6 +36,7 @@ class Header extends Component {
             changeTheme,
             changeCurrentTab,
             changeSearchInput,
+            increaseButtonClicked,
           } = value
           const themeButtonClicked = () => {
             changeTheme()
@@ -62,6 +63,16 @@ class Header extends Component {
                     <h1>Insta Share</h1>{' '}
                   </div>
                 </Link>
+                <button
+                  label="hamburger"
+                  className="hamburger-button"
+                  type="button"
+                  onClick={this.hamburgerButtonClicked}
+                >
+                  <GiHamburgerMenu
+                    style={{color: fontColor, height: '30px', width: '30px'}}
+                  />
+                </button>
                 <div className="navbar-right-container">
                   <div style={{display: 'flex', alignItems: 'center'}}>
                     <input
@@ -138,32 +149,7 @@ class Header extends Component {
                   </ul>
                 </div>
               </div>
-              <div className="navbar-container-portrait">
-                <Link
-                  to="/"
-                  onClick={() => changeCurrentTab('Home')}
-                  className={`link-item ${backgroundColor}`}
-                >
-                  <div className="navbar-left-container">
-                    <img
-                      src="https://res.cloudinary.com/djfbwkdh3/image/upload/v1705640022/logo_oaxiab.png"
-                      alt="website logo"
-                      className="website-logo-image"
-                    />
-                    <h1>Insta Share</h1>{' '}
-                  </div>
-                </Link>
-                <button
-                  label="hamburger"
-                  className="hamburger-button"
-                  type="button"
-                  onClick={this.hamburgerButtonClicked}
-                >
-                  <GiHamburgerMenu
-                    style={{color: fontColor, height: '30px', width: '30px'}}
-                  />
-                </button>
-              </div>
+
               {isPortraitMenuOpen && (
                 <ul className="portrait-links-container">
                   <li>
@@ -255,6 +241,37 @@ class Header extends Component {
                 </ul>
               )}
               <hr />
+              {currentTab === 'Search' && window.innerWidth <= 768 && (
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <input
+                    type="search"
+                    className="search-element"
+                    placeholder="Search Caption"
+                    id="portraitSearch"
+                    onChange={this.inputChanged}
+                  />
+
+                  <button
+                    type="button"
+                    label="search"
+                    data-testid="searchIcon"
+                    className="search-icon-container"
+                    onClick={() => {
+                      changeCurrentTab('Search')
+                      changeSearchInput(searchInput)
+                      increaseButtonClicked()
+                    }}
+                  >
+                    <FaSearch style={{height: '15px', width: '15px'}} />
+                  </button>
+                </div>
+              )}
             </nav>
           )
         }}

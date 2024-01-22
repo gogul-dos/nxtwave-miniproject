@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import {BsHeart} from 'react-icons/bs'
 import {FcLike} from 'react-icons/fc'
-import {FaRegComment, FaSearch} from 'react-icons/fa'
+import {FaRegComment} from 'react-icons/fa'
 import {GrSearchAdvanced} from 'react-icons/gr'
 import {BiShareAlt} from 'react-icons/bi'
 import ThemeContext from '../Context'
@@ -21,8 +21,6 @@ class Search extends Component {
     urlRequestStatus: this.requestStatus.progress,
     urlResult: [],
     searchInput: '',
-    portraitSearchInput: '',
-    searchButtonClicked: 0,
   }
 
   componentDidMount() {
@@ -36,12 +34,10 @@ class Search extends Component {
     const {searchInput} = this.context
     const {urlRequestStatus} = this.state
 
-    // Check if searchInput has changed and if the component is not already in the process of fetching data
     if (
       prevState.searchInput !== searchInput &&
       urlRequestStatus !== this.requestStatus.progress
     ) {
-      // Trigger asynchronous operation when searchInput changes
       this.getSearchResults(searchInput)
     }
   }
@@ -267,67 +263,19 @@ class Search extends Component {
     }
   }
 
-  inputChangedPortrait = () => {
-    const input = document.getElementById('portraitSearch').value
-    const {searchButtonClicked} = this.state
-    if (input === '') {
-      this.setState({
-        portraitSearchInput: input,
-        searchButtonClicked: 0,
-      })
-    } else {
-      this.setState({
-        portraitSearchInput: input,
-        searchButtonClicked: searchButtonClicked + 1,
-      })
-    }
-    this.getSearchResults(input)
-  }
-
   render() {
-    const {portraitSearchInput, searchButtonClicked} = this.state
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {activeTheme, changeCurrentTab, changeSearchInput} = value
+          const {activeTheme, buttonClicked} = value
           return (
             <>
               <div className="search-container-landscape">
-                <h1 style={{marginLeft: '15px'}}>Search Results</h1>
+                <h1 className="search-results-text">Search Results</h1>
                 {this.getCorrespondingLandscapeView(activeTheme)}
               </div>
               <div className="search-container-portrait">
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <div style={{display: 'flex', alignItems: 'center'}}>
-                    <input
-                      type="search"
-                      className="search-element"
-                      placeholder="Search Caption"
-                      id="portraitSearch"
-                    />
-
-                    <button
-                      type="button"
-                      label="search"
-                      data-testid="searchIcon"
-                      className="search-icon-container"
-                      onClick={() => {
-                        changeCurrentTab('Search')
-                        changeSearchInput(portraitSearchInput)
-                        this.inputChangedPortrait()
-                      }}
-                    >
-                      <FaSearch style={{height: '15px', width: '15px'}} />
-                    </button>
-                  </div>
-                </div>
-                {portraitSearchInput === '' && searchButtonClicked === 0 ? (
+                {buttonClicked === 0 ? (
                   <div className="portrait-search-default-container">
                     <GrSearchAdvanced />
                     <p>Search Results will be appear here</p>

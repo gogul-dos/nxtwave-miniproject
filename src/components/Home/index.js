@@ -24,6 +24,7 @@ class Home extends Component {
     urlResult: [],
     storyRequestStatus: this.requestStatus.progress,
     storyResult: [],
+    slidesToShow: 4,
   }
 
   componentDidMount() {
@@ -90,15 +91,24 @@ class Home extends Component {
   }
 
   getStoryView = activeTheme => {
-    const {storyRequestStatus, storyResult} = this.state
+    const {storyRequestStatus, storyResult, slidesToShow} = this.state
     const settings = {
-      slidesToShow: 6,
+      slidesToShow,
       slidesToScroll: 3,
     }
-    const settings1 = {
-      slidesToShow: 4,
-      slidesToScroll: 3,
+
+    function updateSettings() {
+      if (window.innerWidth < 768) {
+        settings.slidesToShow = 4
+      } else {
+        settings.slidesToShow = 6
+      }
     }
+
+    updateSettings()
+
+    window.addEventListener('resize', updateSettings)
+
     const fontColor = activeTheme === 'Dark' ? 'dark-color' : 'light-color'
     switch (storyRequestStatus) {
       case this.requestStatus.progress:
@@ -127,38 +137,20 @@ class Home extends Component {
         )
       case this.requestStatus.success:
         return (
-          <>
-            <div className={`slider-container-landscape ${fontColor}`}>
-              <Slider {...settings}>
-                {storyResult.map(eachStory => (
-                  <div key={eachStory.userId} className="story-container">
-                    <img
-                      src={eachStory.storyUrl}
-                      alt="user story"
-                      className="user-story-image"
-                    />
-                    <p>{eachStory.userName}</p>
-                  </div>
-                ))}
-              </Slider>
-            </div>
-            <div>
-              <div className={`slider-container-portrait ${fontColor}`}>
-                <Slider {...settings1}>
-                  {storyResult.map(eachStory => (
-                    <div key={eachStory.userId} className="story-container">
-                      <img
-                        src={eachStory.storyUrl}
-                        alt="user story"
-                        className="user-story-image"
-                      />
-                      <p>{eachStory.userName}</p>
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-            </div>
-          </>
+          <div className={`slider-container-landscape ${fontColor}`}>
+            <Slider {...settings}>
+              {storyResult.map(eachStory => (
+                <div key={eachStory.userId} className="story-container">
+                  <img
+                    src={eachStory.storyUrl}
+                    alt="user story"
+                    className="user-story-image"
+                  />
+                  <p>{eachStory.userName}</p>
+                </div>
+              ))}
+            </Slider>
+          </div>
         )
       default:
         return null
@@ -287,7 +279,7 @@ class Home extends Component {
                   className="post-image"
                 />
                 <div className="likes-comment-container">
-                  {!eachPost.like_status && (
+                  {!eachPost.like_status ? (
                     <button
                       type="button"
                       label="likeIcon"
@@ -304,8 +296,7 @@ class Home extends Component {
                         onClick={() => this.postLiked(eachPost.postId)}
                       />
                     </button>
-                  )}
-                  {eachPost.like_status && (
+                  ) : (
                     <button
                       type="button"
                       label="unLikeIconv"
@@ -355,7 +346,7 @@ class Home extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {activeTheme, changeCurrentTab, searchInput, currentTab} = value
+          const {activeTheme, changeCurrentTab, currentTab} = value
           const backgroundTheme =
             activeTheme === 'Dark'
               ? 'home-dark-container'
@@ -365,7 +356,7 @@ class Home extends Component {
               <Header />
               <div>
                 <div>
-                  {searchInput === '' && currentTab === 'Home' ? (
+                  {currentTab === 'Home' ? (
                     <div className={`main-home-container ${backgroundTheme}`}>
                       {this.getStoryView(activeTheme)}
                       {this.getCorrespondingView(activeTheme, changeCurrentTab)}
