@@ -99,7 +99,7 @@ class Profile extends Component {
                 <div style={{display: 'flex', alignItems: 'center'}}>
                   <img
                     src={urlResult.profile_pic}
-                    alt="my profile"
+                    alt="user profile"
                     className="my-profile-image-portrait"
                   />
                   <p style={{marginLeft: '10px'}}>
